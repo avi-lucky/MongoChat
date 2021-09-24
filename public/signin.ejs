@@ -23,27 +23,23 @@
                         <div class="input-group">
                             <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i
                                         class="fas fa-envelope"></i></span></div>
-                            <input class="form-control" name="email" type="email" placeholder="Email" id="email"
-                                required maxlength="30">
+                            <input class="form-control" name="email" type="email" placeholder="Email" id="email" required maxlength="30">
                         </div><br>
                         <div class="input-group">
                             <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i
                                         class="fas fa-lock"></i></span></div>
-                            <input class="form-control" name="password" type="password" placeholder="Password"
-                                id="password" required maxlength="30">
+                            <input class="form-control" name="password" type="password" placeholder="Password" id="password" required maxlength="30">
                         </div><br>
-                        <button onclick="logIn()" action="logIn" class="btn btn-primary" type="submit" form="nameform"
-                            value="Submit" style="width:100%;">LogIn</button>
+                        <button onclick="logIn()" action="logIn" class="btn btn-primary" type="submit" form="nameform" value="Submit" style="width:100%;">LogIn</button>
                     </form>
-                    <button onclick="forgotPassword()" action="forgotPassword" class="btn btn-primary" type="submit"
-                        form="nameform" value="Submit" style="width:100%;">Forgot Password</button>
+                    <button onclick="forgotPassword()" action="forgotPassword" class="btn btn-primary" type="submit" form="nameform" value="Submit" style="width:100%;">Forgot Password</button>
                 </div>
             </div><br>
         </div>
 
         <script>
             function forgotPassword() {
-                location.replace("http://localhost:3000/forgot")
+                location.replace("http://localhost:5000/forgot")
             }
         </script>
 
