@@ -1,7 +1,7 @@
 const express = require('express')
 const db = require('./src/db/mongoose')
 const userRouter = require('./src/routers/user')
-    // const friendRouter = require('./src/routers/friend')
+const friendRouter = require('./src/routers/friend')
     // const chatRouter = require('./src/routers/chat')
 const path = require('path')
 const http = require('http')
@@ -36,7 +36,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.use(express.json())
 app.use(userRouter)
-    // app.use(friendRouter)
+app.use(friendRouter)
     // app.use(chatRouter)
 
 app.listen(5000, () => console.log("Server Up and Running!"));
