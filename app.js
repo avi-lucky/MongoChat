@@ -5,8 +5,11 @@ const friendRouter = require('./src/routers/friend')
 const chatRouter = require('./src/routers/chat')
 const path = require('path')
 const http = require('http')
+const socketio = require('socket.io')
 
 const app = express();
+const server = http.createServer(app)
+const io = socketio(server)
 
 const publicDirectoryPath = path.join(__dirname, '/public/')
 
@@ -34,11 +37,15 @@ app.get('/addFriend', function(req, res, next) {
 
 app.use(express.static(publicDirectoryPath))
 
+io.on('connection', () => {
+    console.log('New WebSocket Connection')
+})
+
 app.use(express.json())
 app.use(userRouter)
 app.use(friendRouter)
 app.use(chatRouter)
 
-app.listen(5000, () => console.log("Server Up and Running!"));
+server.listen(5000, () => console.log("Server Up and Running!"));
 
 module.exports = app

@@ -1,3 +1,12 @@
+// // const socket = io("http://localhost:5000")
+// // socket.on('connection')
+// const { Server } = require('socket.io')("http://localhost:5000");
+// // const div = document.getElementById('chat-box')
+// // const message = document.getElementById('message')
+// // const messageContainer = document.getElementById(".chat-panel")
+
+const socket = io()
+
 // List All Friends
 var ownerEmail
 axios.get('/friends', {
@@ -85,7 +94,7 @@ function chatUser() {
 // Logout User
 function logOut() {
     console.log(localStorage.getItem("token"))
-    axios.post('/users/logout', {}, {
+    axios.post('/users/logout', {
         headers: {
             Authorization: ('Bearer ', localStorage.getItem("token"))
         }
