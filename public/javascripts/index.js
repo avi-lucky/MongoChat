@@ -23,15 +23,12 @@ axios.get('/friends', {
     })
     .then(() => {
         socket.on(ownerEmail, (msg) => {
-            console.log(msg)
             const messageElement = document.createElement('div')
-            messageElement.innerText = msg
             messageElement.classList.add('chat-panel');
             messageElement.classList.add('col-md-3');
             messageElement.classList.add('chat-bubble');
             messageElement.classList.add('chat-bubble--left');
-            messageElement.classList.add('offset-md-9');
-            messageElement.classList.add('chat-bubble--right');
+            messageElement.innerHTML = `<h4>${msg}</h4>`
             messenger.append(messageElement)
         })
     })
@@ -88,14 +85,28 @@ function chatUser() {
             }
         })
         .then(function(response) {
-            // location.reload()
-            // console.log(response)
-            // console.log(response.data)
+            const messageElement = document.createElement('div')
+            messageElement.classList.add('chat-panel');
+            messageElement.classList.add('col-md-3');
+            messageElement.classList.add('offset-md-9');
+            messageElement.classList.add('chat-bubble');
+            messageElement.classList.add('chat-bubble--right');
+            messageElement.innerHTML = `<h4>${message}</h4>`
+            messenger.append(messageElement)
+            document.getElementById("message").value = ''
+            messageElement.scrollTop = messageElement.scrollHeight
         })
         .catch(function(error) {
             console.log(error);
         })
 }
+
+// function scrollToBottom() {
+//     let messageArea = document.getElementsByClassName('chat-panel')
+//     console.log(messageArea)
+//     window.scrollTo(0, messageArea.scrollHeight)
+//         // messageArea.scrollTop = messageArea.scrollHeight
+// }
 
 // Logout User
 function logOut() {
