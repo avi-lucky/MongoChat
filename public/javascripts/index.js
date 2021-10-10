@@ -1,10 +1,3 @@
-// // const socket = io("http://localhost:5000")
-// // socket.on('connection')
-// const { Server } = require('socket.io')("http://localhost:5000");
-// // const div = document.getElementById('chat-box')
-// // const message = document.getElementById('message')
-// // const messageContainer = document.getElementById(".chat-panel")
-
 const socket = io()
 
 // List All Friends
@@ -27,6 +20,20 @@ axios.get('/friends', {
         document.getElementById('ownerId').innerHTML = response.data[0].owner
         ownerEmail = response.data[0].owner
         inboxMsg(window[document.getElementById('messenger').innerHTML])
+    })
+    .then(() => {
+        socket.on(ownerEmail, (msg) => {
+            console.log(msg)
+            const messageElement = document.createElement('div')
+            messageElement.innerText = msg
+            messageElement.classList.add('chat-panel');
+            messageElement.classList.add('col-md-3');
+            messageElement.classList.add('chat-bubble');
+            messageElement.classList.add('chat-bubble--left');
+            messageElement.classList.add('offset-md-9');
+            messageElement.classList.add('chat-bubble--right');
+            messenger.append(messageElement)
+        })
     })
     .catch(function(error) {
         console.log(error)
@@ -70,9 +77,8 @@ function inboxMsg() {
 // Create Chat
 function chatUser() {
     const receiver = document.getElementsByClassName('active')[0].id
-    console.log(receiver)
     const message = document.getElementById("message").value
-    console.log(message)
+    socket.emit('chat', message, receiver)
     axios.post('/chats', {
             friend: receiver,
             message: message
@@ -82,9 +88,9 @@ function chatUser() {
             }
         })
         .then(function(response) {
-            location.reload()
-                // console.log(response)
-                // console.log(response.data)
+            // location.reload()
+            // console.log(response)
+            // console.log(response.data)
         })
         .catch(function(error) {
             console.log(error);

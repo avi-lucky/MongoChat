@@ -37,8 +37,11 @@ app.get('/addFriend', function(req, res, next) {
 
 app.use(express.static(publicDirectoryPath))
 
-io.on('connection', () => {
-    console.log('New WebSocket Connection')
+io.on('connection', (socket) => {
+    socket.on('chat', (msg, receiver) => {
+        console.log(msg, receiver)
+        io.emit(receiver, msg);
+    });
 })
 
 app.use(express.json())
