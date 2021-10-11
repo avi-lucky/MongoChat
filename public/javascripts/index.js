@@ -30,6 +30,7 @@ axios.get('/friends', {
             messageElement.classList.add('chat-bubble--left');
             messageElement.innerHTML = `<h4>${msg}</h4>`
             messenger.append(messageElement)
+            scrollToBottom()
         })
     })
     .catch(function(error) {
@@ -65,10 +66,16 @@ function inboxMsg() {
                 }
             }
             document.getElementById('messenger').innerHTML = chat
+            scrollToBottom()
         })
         .catch(function(error) {
             console.log(error)
         });
+}
+
+function scrollToBottom() {
+    var objDiv = document.getElementById("messenger");
+    objDiv.scrollIntoView(false)
 }
 
 // Create Chat
@@ -94,19 +101,17 @@ function chatUser() {
             messageElement.innerHTML = `<h4>${message}</h4>`
             messenger.append(messageElement)
             document.getElementById("message").value = ''
-            messageElement.scrollTop = messageElement.scrollHeight
+            scrollToBottom()
         })
         .catch(function(error) {
             console.log(error);
         })
 }
-
-// function scrollToBottom() {
-//     let messageArea = document.getElementsByClassName('chat-panel')
-//     console.log(messageArea)
-//     window.scrollTo(0, messageArea.scrollHeight)
-//         // messageArea.scrollTop = messageArea.scrollHeight
-// }
+document.getElementById("message").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        chatUser()
+    }
+});
 
 // Logout User
 function logOut() {
