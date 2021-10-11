@@ -39,7 +39,7 @@ app.use(express.static(publicDirectoryPath))
 
 io.on('connection', (socket) => {
     socket.on('chat', (msg, receiver) => {
-        console.log(msg, receiver)
+        // console.log(msg, receiver)
         io.emit(receiver, msg);
     });
 })

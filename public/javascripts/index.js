@@ -116,7 +116,7 @@ document.getElementById("message").addEventListener("keyup", function(event) {
 // Logout User
 function logOut() {
     console.log(localStorage.getItem("token"))
-    axios.post('/users/logout', {
+    axios.post('/users/logout', {}, {
         headers: {
             Authorization: ('Bearer ', localStorage.getItem("token"))
         }
