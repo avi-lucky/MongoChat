@@ -45,7 +45,7 @@ userSchema.virtual('friends', {
     foreignField: 'owner'
 })
 
-userSchema.methods.generateAuthToken = async function () {
+userSchema.methods.generateAuthToken = async function() {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewproject')
 
