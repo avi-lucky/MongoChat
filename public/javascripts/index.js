@@ -3,8 +3,9 @@ const socket = io()
 // List All Friends
 var ownerEmail
 axios.get('/friends', {
+        // token = document.cookie
         headers: {
-            Authorization: ('Bearer ', localStorage.getItem("token"))
+            Authorization: ('Bearer ', document.cookie)
         },
     })
     .then(function(response) {
@@ -52,7 +53,7 @@ function openClick(e) {
 function inboxMsg() {
     axios.get('/chats', {
             headers: {
-                Authorization: ('Bearer ', localStorage.getItem("token"))
+                Authorization: ('Bearer ', document.cookie)
             },
         })
         .then(function(response) {
@@ -88,7 +89,7 @@ function chatUser() {
             message: message
         }, {
             headers: {
-                Authorization: ('Bearer ', localStorage.getItem("token"))
+                Authorization: ('Bearer ', document.cookie)
             }
         })
         .then(function(response) {
@@ -115,17 +116,19 @@ document.getElementById("message").addEventListener("keyup", function(event) {
 
 // Logout User
 function logOut() {
-    console.log(localStorage.getItem("token"))
+    console.log(document.cookie)
     axios.post('/users/logout', {}, {
-        headers: {
-            Authorization: ('Bearer ', localStorage.getItem("token"))
-        }
-    }).then((response) => {
-        console.log("Logged Out")
-        localStorage.removeItem("token");
-        location.replace('/')
-    }).catch((error) => {
-        console.log(error)
-        console.log(localStorage.getItem("token"))
-    })
+            headers: {
+                Authorization: ('Bearer ', document.cookie)
+            }
+        })
+        .then((response) => {
+            console.log("Logged Out")
+                // response.clearCookie(document.cookie)
+            localStorage.removeItem("token");
+            location.replace('/')
+        }).catch((error) => {
+            console.log(error)
+            console.log(document.cookie)
+        })
 }

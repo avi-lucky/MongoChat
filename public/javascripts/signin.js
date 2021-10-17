@@ -9,8 +9,7 @@ function logIn() {
             password: password,
         })
         .then(function(response) {
-            SetCookie: Token = response.data.token
-                // document.setItem('token', [value]);
+            document.cookie = ('token', [response.data.token])
                 // localStorage.setItem('token', response.data.token)
                 // res.send( user, response.data.token )
             console.log(response);

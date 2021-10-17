@@ -21,7 +21,7 @@ router.post('/users/login', async(req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email, password: req.body.password })
         const token = await user.generateAuthToken()
-        res.cookie('jwt', token, { httpOnly: true, secure: true, maxAge: 3600000 })
+            // res.cookie('jwt', token, { httpOnly: true, secure: true, maxAge: 3600000 })
         res.send({ user, token })
     } catch (e) {
         console.log(e)

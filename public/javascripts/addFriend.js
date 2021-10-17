@@ -7,7 +7,7 @@ function addFriend() {
             email: email
         }, {
             headers: {
-                Authorization: ('Bearer ', localStorage.getItem("token"))
+                Authorization: ('Bearer ', document.cookie)
             }
         })
         .then(function(response) {
