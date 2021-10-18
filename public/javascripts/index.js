@@ -5,7 +5,7 @@ var ownerEmail
 axios.get('/friends', {
         // token = document.cookie
         headers: {
-            Authorization: ('Bearer ', document.cookie)
+            Authorization: ('Bearer ', ('; ' + document.cookie).split(`; token=`).pop().split(';')[0])
         },
     })
     .then(function(response) {
@@ -53,7 +53,7 @@ function openClick(e) {
 function inboxMsg() {
     axios.get('/chats', {
             headers: {
-                Authorization: ('Bearer ', document.cookie)
+                Authorization: ('Bearer ', ('; ' + document.cookie).split(`; token=`).pop().split(';')[0])
             },
         })
         .then(function(response) {
@@ -89,7 +89,7 @@ function chatUser() {
             message: message
         }, {
             headers: {
-                Authorization: ('Bearer ', document.cookie)
+                Authorization: ('Bearer ', ('; ' + document.cookie).split(`; token=`).pop().split(';')[0])
             }
         })
         .then(function(response) {
@@ -119,13 +119,13 @@ function logOut() {
     console.log(document.cookie)
     axios.post('/users/logout', {}, {
             headers: {
-                Authorization: ('Bearer ', document.cookie)
+                Authorization: ('Bearer ', ('; ' + document.cookie).split(`; token=`).pop().split(';')[0])
             }
         })
         .then((response) => {
             console.log("Logged Out")
-                // response.clearCookie(document.cookie)
-            localStorage.removeItem("token");
+            document.cookie = "token=";
+            // localStorage.removeItem("token");
             location.replace('/')
         }).catch((error) => {
             console.log(error)

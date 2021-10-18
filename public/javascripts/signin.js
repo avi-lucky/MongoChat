@@ -9,9 +9,7 @@ function logIn() {
             password: password,
         })
         .then(function(response) {
-            document.cookie = ('token', [response.data.token])
-                // localStorage.setItem('token', response.data.token)
-                // res.send( user, response.data.token )
+            document.cookie = `token=${response.data.token}`
             console.log(response);
             console.log(response.data.token)
             location.replace('http://localhost:5000/index')

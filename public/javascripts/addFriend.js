@@ -7,7 +7,7 @@ function addFriend() {
             email: email
         }, {
             headers: {
-                Authorization: ('Bearer ', document.cookie)
+                Authorization: ('Bearer ', ('; ' + document.cookie).split(`; token=`).pop().split(';')[0])
             }
         })
         .then(function(response) {
