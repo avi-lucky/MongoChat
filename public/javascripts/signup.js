@@ -13,7 +13,7 @@ function signUp() {
         .then(function(response) {
             console.log(response);
             console.log(response.data)
-            location.replace('http://localhost:5000/')
+            location.replace('https://avikal-webchat-app.herokuapp.com/')
         })
         .catch(function(error) {
             console.log(error);

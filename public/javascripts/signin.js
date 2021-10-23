@@ -12,7 +12,7 @@ function logIn() {
             document.cookie = `token=${response.data.token}`
             console.log(response);
             console.log(response.data.token)
-            location.replace('http://localhost:5000/index')
+            location.replace('https://avikal-webchat-app.herokuapp.com/index')
         })
         .catch(function(error) {
             console.log(error);
@@ -34,7 +34,7 @@ function submit() {
         .then(function(response) {
             console.log(response)
             console.log(response.data)
-            location.replace('http://localhost:5000')
+            location.replace('https://avikal-webchat-app.herokuapp.com/')
         })
         .catch(function(error) {
             console.log(error)

@@ -13,7 +13,7 @@ function addFriend() {
         .then(function(response) {
             console.log(response)
             console.log(response.data)
-            location.replace("http://localhost:5000/index")
+            location.replace("https://avikal-webchat-app.herokuapp.com/index")
         })
         .catch(function(error) {
             console.log(error);

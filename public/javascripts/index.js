@@ -126,7 +126,7 @@ function logOut() {
             console.log("Logged Out")
             document.cookie = "token=";
             // localStorage.removeItem("token");
-            location.replace('/')
+            location.replace('https://avikal-webchat-app.herokuapp.com/')
         }).catch((error) => {
             console.log(error)
             console.log(document.cookie)
