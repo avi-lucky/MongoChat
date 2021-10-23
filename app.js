@@ -8,9 +8,11 @@ const http = require('http')
 const socketio = require('socket.io')
 
 const app = express();
+// const port = process.env.PORT || 5000
 const server = http.createServer(app)
 const io = socketio(server)
 
+const port = process.env.PORT || 5000
 const publicDirectoryPath = path.join(__dirname, '/public/')
 
 app.get('/', function(req, res, next) {
@@ -49,6 +51,6 @@ app.use(userRouter)
 app.use(friendRouter)
 app.use(chatRouter)
 
-server.listen(5000, () => console.log("Server Up and Running!"));
+server.listen(port, () => console.log("Server Up and Running!"));
 
 module.exports = app
